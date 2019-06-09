@@ -1,0 +1,11 @@
+docker run -d -e VIRTUAL_HOST=www.somedomain.tld,somedomain.tld \
+              -e LETSENCRYPT_HOST=www.somedomain.tld,somedomain.tld \
+              -e LETSENCRYPT_EMAIL=youremail@tld \
+              -e LETSENCRYPT_TEST="true" \
+              --expose=9000 \
+              --volumes /var/run/docker.sock:/var/run/docker.sock \
+              --volumes portainer_data:/data \
+              --restart=on-failure:10 \
+              --network=webproxy \
+              --name containername  \
+              portainer/portainer
